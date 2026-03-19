@@ -219,22 +219,39 @@ a {
 
 .abstract-grid {
   position: absolute;
-  top: -50%;
-  left: -50%;
   width: 200vw;
   height: 200vh;
-  background-image: 
-    linear-gradient(rgba(255, 255, 255, 0.03) 1px, transparent 1px),
-    linear-gradient(90deg, rgba(255, 255, 255, 0.03) 1px, transparent 1px);
-  background-size: 50px 50px;
-  transform: perspective(500px) rotateX(60deg) translateY(0);
-  animation: grid-move 20s linear infinite;
+  top: 0; left: -50vw;
+  background-image:
+    linear-gradient(rgba(160, 32, 255, 0.08) 1px, transparent 1px),
+    linear-gradient(90deg, rgba(160, 32, 255, 0.08) 1px, transparent 1px);
+  background-size: 60px 60px;
+  transform: perspective(600px) rotateX(60deg) translateY(-100px);
+  animation: gridMove 20s linear infinite;
+  mask-image: linear-gradient(to top, rgba(0,0,0,1) 0%, rgba(0,0,0,0) 100%);
+  -webkit-mask-image: linear-gradient(to top, rgba(0,0,0,1) 0%, rgba(0,0,0,0) 100%);
+}
+
+.wireframe-layer {
+  position: absolute;
+  inset: 0;
+  background: repeating-linear-gradient(
+    45deg,
+    rgba(160, 32, 255, 0.02) 0px,
+    rgba(160, 32, 255, 0.02) 2px,
+    transparent 2px,
+    transparent 15px
+  );
+  z-index: 0;
+  mask-image: radial-gradient(circle at center, rgba(0,0,0,1) 0%, rgba(0,0,0,0) 60%);
+  -webkit-mask-image: radial-gradient(circle at center, rgba(0,0,0,1) 0%, rgba(0,0,0,0) 60%);
+  pointer-events: none;
   opacity: 0.6;
 }
 
-@keyframes grid-move {
-  0% { transform: perspective(500px) rotateX(60deg) translateY(0); }
-  100% { transform: perspective(500px) rotateX(60deg) translateY(50px); }
+@keyframes gridMove {
+  0% { transform: perspective(600px) rotateX(60deg) translateY(-100px); }
+  100% { transform: perspective(600px) rotateX(60deg) translateY(-50px); }
 }
 
 .orb {
@@ -561,10 +578,25 @@ footer {
   }
 }
 
-.delay-1 { animation-delay: 0.2s; }
-.delay-2 { animation-delay: 0.4s; }
-.delay-3 { animation-delay: 0.6s; }
-.delay-4 { animation-delay: 0.8s; }
+.slide-up.blur-in {
+  opacity: 0;
+  filter: blur(15px);
+  transform: translateY(40px) scale(0.95);
+  transition: opacity 1s cubic-bezier(0.16, 1, 0.3, 1),
+              transform 1s cubic-bezier(0.16, 1, 0.3, 1),
+              filter 1s cubic-bezier(0.16, 1, 0.3, 1);
+}
+
+.slide-up.blur-in.visible {
+  opacity: 1;
+  filter: blur(0);
+  transform: translateY(0) scale(1);
+}
+
+.delay-1 { transition-delay: 0.1s; animation-delay: 0.1s; }
+.delay-2 { transition-delay: 0.2s; animation-delay: 0.2s; }
+.delay-3 { transition-delay: 0.3s; animation-delay: 0.3s; }
+.delay-4 { transition-delay: 0.4s; animation-delay: 0.4s; }
 
 /* Mobile Menu Toggle */
 .mobile-menu-toggle {
