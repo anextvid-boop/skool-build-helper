@@ -1,97 +1,136 @@
 // Custom Cursor Logic
-const cursor = document.querySelector('.cursor');
-const clickableElements = document.querySelectorAll('a, .btn, button, .feature-card');
+const cursor = document.querySelector(".cursor");
+const clickableElements = document.querySelectorAll(
+  "a, .btn, button, .feature-card",
+);
 
 // Update cursor position
-document.addEventListener('mousemove', (e) => {
+document.addEventListener("mousemove", (e) => {
   // Use requestAnimationFrame for smoother performance
   requestAnimationFrame(() => {
-    if(cursor) {
-      cursor.style.left = e.clientX + 'px';
-      cursor.style.top = e.clientY + 'px';
+    if (cursor) {
+      cursor.style.left = e.clientX + "px";
+      cursor.style.top = e.clientY + "px";
     }
   });
 });
 
 // Add hover effect classes to cursor
-clickableElements.forEach(el => {
-  el.addEventListener('mouseenter', () => {
-    if(cursor) cursor.classList.add('hovered');
+clickableElements.forEach((el) => {
+  el.addEventListener("mouseenter", () => {
+    if (cursor) cursor.classList.add("hovered");
   });
-  el.addEventListener('mouseleave', () => {
-    if(cursor) cursor.classList.remove('hovered');
+  el.addEventListener("mouseleave", () => {
+    if (cursor) cursor.classList.remove("hovered");
   });
 });
 
 // Interactive hover effect for glass cards (subtle dynamic lighting)
-const glassCards = document.querySelectorAll('.glass-card, .feature-card');
+const glassCards = document.querySelectorAll(".glass-card, .feature-card");
 
-glassCards.forEach(card => {
-  card.addEventListener('mousemove', (e) => {
+glassCards.forEach((card) => {
+  card.addEventListener("mousemove", (e) => {
     const rect = card.getBoundingClientRect();
     const x = e.clientX - rect.left;
     const y = e.clientY - rect.top;
-    
+
     // Apply radial gradient that follows the mouse
     const currentBg = getComputedStyle(card).backgroundColor;
     // Extract base rgba from computed style or fallback
     card.style.background = `rgba(30,30,40,0.4) radial-gradient(circle at ${x}px ${y}px, rgba(160,32,255,0.1), transparent 50%)`;
   });
-  
-  card.addEventListener('mouseleave', () => {
-    card.style.background = ''; // reset to CSS defined background
+
+  card.addEventListener("mouseleave", () => {
+    card.style.background = ""; // reset to CSS defined background
   });
 });
 
 // Smooth scrolling for anchor links
-document.querySelectorAll('a[href^="#"]').forEach(anchor => {
-    anchor.addEventListener('click', function (e) {
-        e.preventDefault();
-        
-        const targetId = this.getAttribute('href');
-        if(targetId === '#') return;
-        
-        const targetElement = document.querySelector(targetId);
-        if(targetElement) {
-            targetElement.scrollIntoView({
-                behavior: 'smooth'
-            });
-        }
-    });
+document.querySelectorAll('a[href^="#"]').forEach((anchor) => {
+  anchor.addEventListener("click", function (e) {
+    e.preventDefault();
+
+    const targetId = this.getAttribute("href");
+    if (targetId === "#") return;
+
+    const targetElement = document.querySelector(targetId);
+    if (targetElement) {
+      targetElement.scrollIntoView({
+        behavior: "smooth",
+      });
+    }
+  });
 });
 
 // Mobile menu logic
-const mobileMenuToggle = document.querySelector('.mobile-menu-toggle');
-const mobileNav = document.querySelector('.mobile-nav');
-const mobileNavLinks = document.querySelectorAll('.mobile-nav a');
+const mobileMenuToggle = document.querySelector(".mobile-menu-toggle");
+const mobileNav = document.querySelector(".mobile-nav");
+const mobileNavLinks = document.querySelectorAll(".mobile-nav a");
 
 if (mobileMenuToggle && mobileNav) {
-  mobileMenuToggle.addEventListener('click', () => {
-    mobileMenuToggle.classList.toggle('active');
-    mobileNav.classList.toggle('open');
+  mobileMenuToggle.addEventListener("click", () => {
+    mobileMenuToggle.classList.toggle("active");
+    mobileNav.classList.toggle("open");
     // Prevent background scrolling when menu is open
-    document.body.style.overflow = mobileNav.classList.contains('open') ? 'hidden' : '';
+    document.body.style.overflow = mobileNav.classList.contains("open")
+      ? "hidden"
+      : "";
   });
 
-  mobileNavLinks.forEach(link => {
-    link.addEventListener('click', () => {
-      mobileMenuToggle.classList.remove('active');
-      mobileNav.classList.remove('open');
-      document.body.style.overflow = '';
+  mobileNavLinks.forEach((link) => {
+    link.addEventListener("click", () => {
+      mobileMenuToggle.classList.remove("active");
+      mobileNav.classList.remove("open");
+      document.body.style.overflow = "";
     });
   });
 }
 
 // Global Scroll Unveil Animation (Intersection Observer)
 document.addEventListener("DOMContentLoaded", () => {
-    const scrollObserver = new IntersectionObserver((entries, observer) => {
-        entries.forEach(entry => {
-            if (entry.isIntersecting) {
-                entry.target.classList.add('visible');
-                observer.unobserve(entry.target);
-            }
-        });
-    }, { threshold: 0.15 });
+  const scrollObserver = new IntersectionObserver(
+    (entries, observer) => {
+      entries.forEach((entry) => {
+        if (entry.isIntersecting) {
+          entry.target.classList.add("visible");
+          observer.unobserve(entry.target);
+        }
+      });
+    },
+    { threshold: 0.15 },
+  );
 
-    document.querySelectorAll('.slide-up').forEach(el => scrollObserver.observe(el));
+  document
+    .querySelectorAll(".slide-up")
+    .forEach((el) => scrollObserver.observe(el));
 });
+
+// Particle Spawner for Hero Background
+function createParticles() {
+  const container = document.getElementById("particles-container");
+  if (!container) return;
+
+  const particleCount = 40; // Number of particles on screen
+
+  for (let i = 0; i < particleCount; i++) {
+    const particle = document.createElement("div");
+    particle.className = "magic-particle";
+
+    // Randomize size, position, and animation properties
+    const size = Math.random() * 3 + 1; // 1px to 4px
+    const posX = Math.random() * 100; // 0 to 100vw
+    const delay = Math.random() * 10; // 0s to 10s animation delay
+    const duration = Math.random() * 5 + 5; // 5s to 10s float duration
+
+    particle.style.width = `${size}px`;
+    particle.style.height = `${size}px`;
+    particle.style.left = `${posX}vw`;
+    particle.style.animationDuration = `${duration}s`;
+    particle.style.animationDelay = `${delay}s`;
+
+    container.appendChild(particle);
+  }
+}
+
+// Initialize particles once document is ready
+document.addEventListener("DOMContentLoaded", createParticles);
