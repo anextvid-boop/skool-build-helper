@@ -459,6 +459,47 @@ section {
   left: 0;
 }
 
+/* ROI Section Grid Elements */
+.math-variant {
+  padding: 2.5rem 1.5rem;
+  transition: transform 0.3s ease, border-color 0.3s ease;
+}
+
+.math-variant:hover {
+  transform: translateY(-5px) scale(1.02);
+  border-color: rgba(160, 32, 255, 0.4);
+}
+
+.math-label {
+  font-size: 1.2rem;
+  color: #bbb;
+  margin-bottom: 1rem;
+  font-family: var(--font-heading);
+}
+
+.math-members {
+  font-size: 2.5rem;
+  color: var(--accent-color);
+  font-weight: 700;
+  font-family: var(--font-heading);
+  line-height: 1;
+}
+
+.math-sub {
+  color: #666;
+  font-size: 0.85rem;
+  text-transform: uppercase;
+  letter-spacing: 2px;
+  margin-top: 0.5rem;
+}
+
+.math-total {
+  font-size: 1.4rem;
+  color: #00ff88;
+  margin-top: 1.5rem;
+  font-weight: 700;
+}
+
 /* Form Elements */
 .waitlist-form {
   max-width: 500px;
