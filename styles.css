@@ -812,6 +812,9 @@ footer {
   .nav-links {
     display: none;
   }
+  .hide-mobile {
+    display: none !important;
+  }
   .mobile-menu-toggle {
     display: flex;
   }
