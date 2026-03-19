@@ -315,6 +315,22 @@ a {
   filter: drop-shadow(0 0 8px rgba(160,32,255,0.6));
 }
 
+.glowing-subtitle {
+  font-size: 1.2rem;
+  letter-spacing: 6px;
+  background: linear-gradient(90deg, #fff, var(--accent-color), #fff);
+  -webkit-background-clip: text;
+  background-clip: text;
+  -webkit-text-fill-color: transparent;
+  background-size: 200% auto;
+  animation: shine-text 3s linear infinite;
+}
+
+@keyframes shine-text {
+  0% { background-position: 0% center; }
+  100% { background-position: 200% center; }
+}
+
 .hero-title {
   font-size: 5rem;
   line-height: 1.1;
