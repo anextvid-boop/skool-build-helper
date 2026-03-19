@@ -143,8 +143,8 @@ a {
   display: inline-flex;
   align-items: center;
   justify-content: center;
-  padding: 0.8rem 1.5rem;
-  border-radius: 50px;
+  padding: 0.6rem 1.5rem;
+  border-radius: 9999px;
   font-weight: 600;
   text-transform: uppercase;
   letter-spacing: 1px;
@@ -156,8 +156,8 @@ a {
 }
 
 .btn.lg {
-  padding: 1rem 2.5rem;
-  font-size: 1rem;
+  padding: 0.8rem 1.2rem;
+  font-size: 0.95rem;
 }
 
 .btn-primary {
