@@ -616,7 +616,9 @@ section {
   background: rgba(0, 0, 0, 0.4);
   color: #fff;
   font-family: var(--font-body);
-  font-size: 1rem;
+  font-size: 16px !important;
+  appearance: none;
+  -webkit-appearance: none;
   outline: none;
   transition: all 0.3s ease;
 }
@@ -809,8 +811,42 @@ footer {
   .glass-card {
     padding: 2.5rem 1.5rem;
   }
-  .nav-links {
+  .container {
+    padding: 0 1.2rem;
+  }
+  .waitlist-form {
+    padding: 1.5rem 1rem !important;
+  }
+  .logo {
+    font-size: 1.2rem;
+  }
+  .section-title {
+    font-size: 2rem !important;
+  }
+  .hero-actions .btn {
+    padding: 1rem 1.5rem !important;
+  }
+  .form-submit {
+    padding: 1rem !important;
+    font-size: 1rem !important;
+  }
+  .nav-links:not(.keep-mobile) {
     display: none;
+  }
+  .keep-mobile {
+    display: flex !important;
+    flex-wrap: wrap;
+    gap: 1rem !important;
+    justify-content: center;
+  }
+  .desktop-nav {
+    padding: 1rem !important;
+    flex-direction: column;
+    gap: 0.5rem;
+  }
+  .top-announcement-banner span {
+    font-size: 0.65rem !important;
+    letter-spacing: 2px !important;
   }
   .hide-mobile {
     display: none !important;
